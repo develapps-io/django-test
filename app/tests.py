@@ -1,3 +1,6 @@
 from django.test import TestCase
 
-# Create your tests here.
+
+class TryDjangoTest(TestCase):
+    def test_some_numbers(self):
+        self.assertNotEqual(1, 2)
