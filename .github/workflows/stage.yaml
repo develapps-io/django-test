@@ -15,7 +15,7 @@ jobs:
     - name: Build and run containers
       run: docker-compose up -d --build
     - name: add poetry env
-      run: poetry shell
+      run: poetry install && poetry shell
 #    - name: Build Docker image
 #      uses: docker/build-push-action@v2
 #      with:
