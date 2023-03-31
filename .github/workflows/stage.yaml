@@ -14,6 +14,8 @@ jobs:
 
     - name: Build and run containers
       run: docker-compose up -d --build
+    - name: check
+      run: ls
     - name: add poetry env
       run: poetry install && poetry shell
 #    - name: Build Docker image
