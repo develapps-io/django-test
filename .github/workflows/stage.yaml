@@ -12,7 +12,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: add poetry env
-      run: deactivate && poetry shell
+      run: poetry shell
 
     - name: Build and run containers
       run: docker-compose up -d --build
