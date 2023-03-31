@@ -11,14 +11,18 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Build Docker image
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        file: Dockerfile
-        push: false
-        tags: django_test:latest
 
+    - name: Build and run containers
+      run: docker-compose up
+#    - name: Build Docker image
+#      uses: docker/build-push-action@v2
+#      with:
+#        context: .
+#        file: Dockerfile
+#        push: false
+#        tags: django_test:latest
+    - name: add poetry env
+      run: docker-compose build && docker-compose up
     - name: Test
       run: python manage.py test
     - name: Flake8 Check
