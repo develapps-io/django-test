@@ -36,8 +36,7 @@ jobs:
         uses: snok/install-poetry@v1
         with:
           project_path: .
-      - name: Check directory
-        run: ls
+
       - name: Build Docker image
         run: docker build -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
       - name: Flake8 Check
