@@ -33,7 +33,7 @@ jobs:
 #        push: false
 #        tags: django_test:latest
     - name: Flake8 Check
-      run: |
-        poetry add flake8
-        flake8 --exclude=migrations --max-line-length=120 .
+      run: docker run ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} flake8 .
+
+
 
