@@ -37,5 +37,7 @@ jobs:
         with:
           project_path: .
 
+      - name: Build Docker image
+        run: docker build -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
       - name: Flake8 Check
         run: docker run ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} flake8 .
