@@ -1,0 +1,39 @@
+name: My-workflows
+
+on:
+  push:
+    branches:
+      - feature/POD-19
+
+env:
+  IMAGE_NAME: django_test
+  IMAGE_TAG: latest
+
+jobs:
+  test_job:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        project_path: .
+
+    - name: Build Docker image
+      run: docker build -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
+    - name: Run tests
+      run: docker run ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} python manage.py test
+#    - name: Build Docker image
+#      uses: docker/build-push-action@v2
+#      with:
+#        context: .
+#        file: Dockerfile
+#        push: false
+#        tags: django_test:latest
+    - name: Flake8 Check
+      run: docker run ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} flake8 .
+
+
+
