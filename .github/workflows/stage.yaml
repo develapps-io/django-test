@@ -10,7 +10,7 @@ env:
   IMAGE_TAG: latest
 
 jobs:
-  test:
+  test_job:
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout
@@ -26,19 +26,8 @@ jobs:
     - name: Run tests
       run: docker run ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} python manage.py test
 
+    - name: Flake8 Check
+      run: docker run ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} flake8 .
 
 
-  linter:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          project_path: .
-
-      - name: Flake8 Check
-        run: docker run ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} flake8 .
 
