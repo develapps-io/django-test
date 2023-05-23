@@ -1,0 +1,27 @@
+name: test app
+
+on:
+  push:
+    branches:
+      - feature/POD-19
+
+jobs:
+  tests:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        project_path: .
+
+    - name: Docker hadolint install
+      run: |
+        curl -sSL -o hadolint https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64
+        chmod +x hadolint
+        sudo mv hadolint /bin/
+
+    - name: Run tests
+      run: python manage.py test
