@@ -12,16 +12,29 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Python 3.8.10
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8.10'
+        architecture: 'x64'
+
     - name: Install Poetry
       uses: snok/install-poetry@v1
       with:
         project_path: .
+        version: 1.4.1
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+    - name: Prepare cache
+      uses: actions/cache@v2
+      id: cache
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock')}}
 
-    - name: Docker hadolint install
-      run: |
-        curl -sSL -o hadolint https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64
-        chmod +x hadolint
-        sudo mv hadolint /bin/
+    - name: Install dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: poetry install
 
     - name: Run tests
       run: python manage.py test
