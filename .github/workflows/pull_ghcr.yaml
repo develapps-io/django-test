@@ -46,6 +46,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}
+          tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
