@@ -27,12 +27,12 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.SECRET_NAME }}
           
       - name: Set version
         id: version
         run: |
-          if ${{ contains(github.ref, 'main') }}; then
+          if ${{ contains(github.ref, 'master') }}; then
             VERSION=development-${GITHUB_SHA::8}-$(date +%s)
           fi
           if ${{ github.event.action == 'published' }}; then
@@ -46,6 +46,5 @@ jobs:
         with:
           push: true
           tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}
-          builder: docker/buildx-builder:v0.6.3
           cache-from: type=gha
           cache-to: type=gha,mode=max
