@@ -3,13 +3,12 @@ name: Build image
 on:
   push:
     branches:
-      - master
+      - feature/POD-19
     path-ignore:
       - '**/README.md'
   release:
     types:
       - published
-
 
 env:
   REGISTRY: ghcr.io
