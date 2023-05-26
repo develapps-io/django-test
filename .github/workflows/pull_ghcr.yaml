@@ -27,7 +27,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.SECRET_NAME }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Set version
         id: version
