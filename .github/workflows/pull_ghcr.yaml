@@ -46,5 +46,6 @@ jobs:
         with:
           push: true
           tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}
+          builder: docker/buildx-builder:v0.6.3
           cache-from: type=gha
           cache-to: type=gha,mode=max
