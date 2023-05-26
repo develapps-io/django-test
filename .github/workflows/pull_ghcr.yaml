@@ -28,17 +28,6 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Set version
-        id: version
-        run: |
-          if ${{ contains(github.ref, 'master') }}; then
-            VERSION=development-${GITHUB_SHA::8}-$(date +%s)
-          fi
-          if ${{ github.event.action == 'published' }}; then
-            VERSION=${GITHUB_REF/refs\/tags\//}
-          fi
-          echo ::set-output name=VERSION::${VERSION}
 
       - name: Build image
         id: docker_build
