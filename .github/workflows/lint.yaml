@@ -1,9 +1,10 @@
 name: lint app
 
 on:
-  push:
+  pull_request:
     branches:
-      - feature/POD-19
+      - master
+
 
 jobs:
   lint:
