@@ -3,7 +3,7 @@ name: Build image
 on:
   push:
     branches:
-      - master
+      - feature/POD-15 # master
     path-ignore:
       - '**/README.md'
   release:
