@@ -35,7 +35,7 @@ jobs:
       - name: Set version
         id: version
         run: |
-          if ${{ contains(github.ref, 'feature/POD-19') }}; then
+          if ${{ contains(github.ref, 'master') }}; then
             VERSION=development-${GITHUB_SHA::8}-$(date +%s)
           fi
           if ${{ github.event.action == 'published' }}; then
