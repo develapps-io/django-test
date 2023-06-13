@@ -1,0 +1,33 @@
+name: lint app
+
+on:
+  pull_request:
+    branches:
+      - master
+
+
+jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          project_path: .
+
+      - name: Prepare cache
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock')}}
+
+      - name: Install dependencies
+        if: steps.cache.otputs.cache-hit != 'true'
+        run: poetry install
+
+      - name: Flake8 Check
+        run: poetry run flake8 .
