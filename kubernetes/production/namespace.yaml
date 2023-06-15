@@ -1,20 +1,6 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Namespace
 metadata:
-  name: django-app
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: django-app
-  template:
-    metadata:
-      labels:
-        app: django-app
-    spec:
-      containers:
-        - name: django-app
-          image: django_test:latest
-          ports:
-            - containerPort: 8000
-
+  name: production
+  labels:
+    name: production
