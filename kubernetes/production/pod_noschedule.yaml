@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-noschedule
+spec:
+  containers:
+    - name: nginx-cont
+      image: nginx:alpine
+  tolerations:
+    - key: node-group
+      operator: Exists
+      effect: NoSchedule
