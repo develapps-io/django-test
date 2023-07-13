@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-fdck+0q+ed-@o-34k-awvtm1ae5zwxb8+-xwd8ng^&b^xf%#-3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -118,11 +118,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+LOGIN_REDIRECT_URL = '/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-# 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
-# RGVuaXNsdm06Z2hwX3dIV0R1Y09QSHBrVHkwVkYxd2ZFb3Z3NTMycWVZVDJ4VmxkcA==
+## 2 TOKEN(WORK TOKEN)
+## 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
