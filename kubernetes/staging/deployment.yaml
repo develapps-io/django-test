@@ -14,15 +14,16 @@ spec:
         app: django-app
     spec:
       affinity:
-        nodeAffinity:
+        podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: node-group
-                    operator: In
-                    values:
-                      - staging
-                      - spot
+          - labelSelector:
+              matchExpressions:
+                - key: node-group
+                  operator: In
+                  values:
+                    - staging
+            topologyKey: "kubernetes.io/hostname"
+
       containers:
       - name: django-app
         image: nginx:latest
@@ -33,7 +34,3 @@ spec:
         operator: Equal
         effect: NoSchedule
         value: staging
-      - key: node-group
-        operator: Equal
-        effect: NoSchedule
-        value: spot
