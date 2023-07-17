@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -123,6 +122,3 @@ LOGIN_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-## 2 TOKEN(WORK TOKEN)
-## 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
